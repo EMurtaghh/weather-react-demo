@@ -1,25 +1,20 @@
-import logo from './logo.svg';
+import React from 'react';
+import WeatherCard from './components/WeatherCard';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* dt is in unix-seconds but javascript uses milliseconds, multiply with 1000 */}
+      <WeatherCard
+        dt={1602104400 * 1000}
+        temp_min="22.67"
+        temp_max="24.39"
+        main="Clear"
+        icon="01d"
+      />
     </div>
   );
-}
+};
 
 export default App;
