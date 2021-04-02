@@ -8,13 +8,15 @@ const CitySelector = ({onSearch}) => {
       <>
         <Row>
           <Col>
-            <h1>Search your city</h1>
+            <h1>City Weather Lookup</h1>
+            <h2>Enter a city</h2>
           </Col>
         </Row>
-
+        
         <Row>
           <Col xs={4}>
             <FormControl
+            // searches city entered in via formControl
               placeholder="Enter city"
               onChange={(event) => setCity(event.target.value)}
               value={city}
@@ -24,7 +26,7 @@ const CitySelector = ({onSearch}) => {
 
         <Row>
           <Col>
-           {/* don't forget to edit our function  */}
+            { /* onClick handler for bringing up weather in city */ }
             <Button onClick={() => onSearch(city)}>Check Weather</Button>
           </Col>
         </Row>

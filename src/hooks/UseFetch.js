@@ -8,20 +8,28 @@ const UseFetch = (initialUrl) => {
   const [url, setUrl] = useState(initialUrl);
 
   useEffect(() => {
-
+    if(!url) return;
     setIsLoading(true);
+    // resets search
+    setData(null);
+    setError(null);
 
     fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoading(false);
-        setData(data);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setError(error);
-      });
-      // dependency array
+        .then((response) => response.json())
+        .then((data) => {
+
+            // dataNotFound error handler
+            setIsLoading(false);
+            if(data.cod >= 400) {
+                setError(data.message);
+                return;
+            }
+            setData(data);
+        })
+        .catch((error) => {
+            setIsLoading(false);
+            setError(error);
+        });
   }, [url]);
 
   return { data, error, isLoading, setUrl };
